@@ -26,7 +26,17 @@ window.addEventListener("load", async (
     }
   }
 
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const cmd = command.value.split(' ')[0]
+    const args = command.value.split(' ').slice(1)
+    await runCommand(cmd, args)
+  })
 
+  //nodejs serve in browser
+  wc.on('server-ready', (port, host) => {
+    reportOutput(`Server ready on ${host}:${port}`)
+  })
 
 
 
